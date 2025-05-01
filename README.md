@@ -4,7 +4,7 @@ Name : 言子楪世 or 苏哲兰
 ### 学习爱好为主
 熟悉语言 ：Java,Kotlin,Dart  
 
-常用技术栈：Android, Xposed, Spring boot后端系列, 以及不太熟练的Flutter
+常用技术栈：Android,Compose, Xposed, Spring boot后端系列, 以及不太熟练的Flutter
 
 邮箱 ： suzhelan@gmail.com
 
