@@ -1,8 +1,8 @@
 ## Hello I am Suzhelan
 Name : 言子楪世 or 苏哲兰
 
-### 学习爱好为主
-熟悉语言 ：Java,Kotlin 
+### 职业所需及学习爱好为主
+熟悉语言 ：Java,Kotlin,Js,Ts
 
 常用技术栈：Android,Compose, Xposed, Spring boot后端系列,
 
