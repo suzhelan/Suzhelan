@@ -29,7 +29,7 @@ jobs:
       - name: Generate main metrics
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }}   # ← 确保该 secret 存在且有足够权限，或改为 ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}   # ← 确保该 secret 存在且有足够权限，或改为 ${{ secrets.GITHUB_TOKEN }}
           user: suzhelan
           template: classic
           base: header, activity, community, repositories, metadata
