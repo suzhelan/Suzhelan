@@ -1,0 +1,79 @@
+name: GitHub Metrics and Snake Animation
+
+# 顶层显式写权限，确保 schedule 触发时 GITHUB_TOKEN 有写入权限
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+
+      # 如果 lowlighter/metrics 需要一个有写权限的 token，请确保 secrets.METRICS_TOKEN 存在并是 PAT（repo 权限）。
+      # 如果你希望使用内置 GITHUB_TOKEN，可以把 token 改成 ${{ secrets.GITHUB_TOKEN }}（并保证 permissions 已设置为 write）。
+      - name: Generate main metrics
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}   # ← 确保该 secret 存在且有足够权限，或改为 ${{ secrets.GITHUB_TOKEN }}
+          user: suzhelan
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: Asia/Shanghai
+
+  icons:
+    runs-on: ubuntu-latest
+    needs: github-metrics
+    permissions:
+      contents: write
+    steps:
+      - name: Labels
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.topics.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_topics: yes
+          plugin_topics_limit: 12
+
+  snake:
+    runs-on: ubuntu-latest
+    needs: [github-metrics, icons]
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+
+      - name: Generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          # --- 修改这里 ---
+          # 为 dark 变体文件添加 ?palette=github-dark
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Push snake animation to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
