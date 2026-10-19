@@ -2,9 +2,9 @@
 Name : 言子楪世 or 苏哲兰
 
 ### 职业所需及学习爱好为主
-熟悉语言 ：Java,Kotlin,Js,Ts
+熟悉语言 ：Java,Kotlin,Js,Ts,C,C++
 
-常用技术栈：Android,Compose, Xposed, Spring boot后端系列,
+常用技术栈：Android、Compose、Xposed、Spring boot、Node系列,
 
 邮箱 ： suzhelan@gmail.com
 
