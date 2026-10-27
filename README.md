@@ -8,7 +8,9 @@ Name : 言子楪世 or 苏哲兰
 
 邮箱 ： suzhelan@gmail.com
 
-有开源项目的会回关的 乐意交个朋友
+有开源项目的会回关的 乐意交个朋友 如果你需要得到帮助 可以到我的README页留言
+
+
 
 ## 统计信息
 ![Readme Card](https://github-readme-stats-one-bice.vercel.app/api?username=suzhelan&count_private=true&show_icons=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR)  
